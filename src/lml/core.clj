@@ -1,6 +1,7 @@
 (ns lml.core)
 
 (defn parse-call [form]
+  
        (= 'def tok)    (parse-def tok-seq)
        (= 'extern tok) (parse-extern tok-seq)
   )
@@ -15,7 +16,7 @@
       (cond
        (seq? tok)      (parse-call tok-seq)
        (number? tok)   {:tok :number, :val tok}
-       (symbol? tok)   {:tok :identifier, :val tok}
+       (symbol? tok)   {:tok :symbol, :val tok}
        :else           {:tok :illegal, :val tok})
       (parse (next tok-seq))))))
 
